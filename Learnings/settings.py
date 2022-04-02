@@ -54,7 +54,7 @@ ROOT_URLCONF = 'Learnings.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['Learnings/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

@@ -1,8 +1,18 @@
 {% extends 'base.html' %}
 {% block title %}Second{% endblock title %}
+
+{% block css %}
+<style>
+    p{
+        color: red;
+    }
+</style>
+{% endblock css %}
+
+
 {% block body %}
 
-This is a Page with a lot of things
+<p>This is a Page with a lot of things</p>
 
 
 {% endblock body %}

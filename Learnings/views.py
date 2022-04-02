@@ -7,3 +7,6 @@ def home(request):
         'name': name,
     }
     return render(request,"home.html", context)
+
+def second(request):
+    return render(request,"second.html")

@@ -1,6 +1,4 @@
-from importlib.resources import contents
 from django.shortcuts import render
-from django.utils.datastructures import MultiValueDictKeyError
 # Create your views here.
 from django.contrib import admin
 from django.urls import path

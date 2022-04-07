@@ -12,14 +12,3 @@ def home(request):
 def second(request):
     return render(request,"second.html")
 
-def contact(request):
-    if request.method == "POST":
-        name = request.POST['name']
-        phone = request.POST['phone']
-        content = request.POST['content']
-        
-        #creating Object of Contact
-        obj = Contact(name=name, phone=phone, content=content)
-        obj.save()
-        
-    return render(request,"contact.html")

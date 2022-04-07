@@ -1,6 +1,5 @@
-from importlib.resources import contents
-from multiprocessing import context
 from django.shortcuts import HttpResponse, render
+from firstapp.models import Contact
 
 def home(request):
     if request.method == 'GET':
@@ -18,7 +17,9 @@ def contact(request):
         name = request.POST['name']
         phone = request.POST['phone']
         content = request.POST['content']
-        print("Submitted name is ",name)
-        print("Submitted Phone is ",phone)
-        print("Submitted Description is ",content) 
+        
+        #creating Object of Contact
+        obj = Contact(name=name, phone=phone, content=content)
+        obj.save()
+        
     return render(request,"contact.html")

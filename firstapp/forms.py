@@ -1,10 +1,9 @@
-from importlib.resources import contents
-from operator import contains
+from dataclasses import field
 from django import forms
+from .models import Contact
 
 #declearinng the form class
-class ContactForm(forms.Form):
-    name=forms.CharField(max_length=100,label="Your Name")
-    phone=forms.CharField(max_length=100,label="Your Phone")
-    contact=forms.CharField(max_length=100,label="Your Description")
-    
+class ContactForm(forms.ModelForm):
+    class Meta:
+        model = Contact
+        fields='__all__'

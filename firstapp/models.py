@@ -1,3 +1,5 @@
+from email.mime import image
+from email.policy import default
 from venv import create
 from django.db import models
 from django.utils.timezone import now
@@ -25,3 +27,4 @@ class Post(models.Model):
     available=models.BooleanField()
     category=models.CharField(max_length=100,choices=CATEGORY)
     created_at=models.DateTimeField(default=now)
+    image=models.ImageField(default='default.jpeg',upload_to='tution/images')

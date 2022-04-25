@@ -1,8 +1,7 @@
-from email.mime import image
-from email.policy import default
-from venv import create
 from django.db import models
 from django.utils.timezone import now
+from django.utils.text import slugify
+from PIL import Image
 
 # Create your models here.
 class Contact(models.Model):
@@ -28,3 +27,12 @@ class Post(models.Model):
     category=models.CharField(max_length=100,choices=CATEGORY)
     created_at=models.DateTimeField(default=now)
     image=models.ImageField(default='default.jpeg',upload_to='tution/images')
+    
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
+        img=Image.open(self.image.path)
+        if img.height>300 or img.width>300:
+            output_size=(300,300)
+            img.thumbnail(output_size)
+            img.save(self.image.path)

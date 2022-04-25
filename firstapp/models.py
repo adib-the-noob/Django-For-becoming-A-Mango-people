@@ -1,7 +1,9 @@
+from email.policy import default
 from django.db import models
 from django.utils.timezone import now
 from django.utils.text import slugify
 from PIL import Image
+from multiselectfield import MultiSelectField
 
 # Create your models here.
 class Contact(models.Model):
@@ -17,6 +19,13 @@ class Post(models.Model):
         ('Teacher', 'Teacher'),
         ('Student', 'Student'),
     )
+    MEDIUM  = (
+        ('Bangla', 'Bangla'),
+        ('English', 'English'),
+        ('Hindi', 'Hindi'),
+        ('Urdu', 'Urdu'),
+    )
+    
     id=models.AutoField(primary_key=True)
     title=models.CharField(max_length=100)
     slug=models.SlugField(max_length=100,default=title)
@@ -27,6 +36,7 @@ class Post(models.Model):
     category=models.CharField(max_length=100,choices=CATEGORY)
     created_at=models.DateTimeField(default=now)
     image=models.ImageField(default='default.jpeg',upload_to='tution/images')
+    medium = MultiSelectField(max_length=100,max_choices=5,choices=MEDIUM,default=MEDIUM)
     
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)

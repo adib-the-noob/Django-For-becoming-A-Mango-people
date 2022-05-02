@@ -1,3 +1,3 @@
-# Django-For-being-Mango-people
+# Django-For-becoming-A-Mango-people
 
-Django for Mango People.
+Django for becoming A Mango People.

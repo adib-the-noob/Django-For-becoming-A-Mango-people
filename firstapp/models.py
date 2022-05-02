@@ -1,9 +1,10 @@
-from email.policy import default
 from django.db import models
 from django.utils.timezone import now
 from django.utils.text import slugify
 from PIL import Image
 from multiselectfield import MultiSelectField
+from django.contrib.auth.models import User
+
 
 # Create your models here.
 class Contact(models.Model):
@@ -25,7 +26,7 @@ class Post(models.Model):
         ('Hindi', 'Hindi'),
         ('Urdu', 'Urdu'),
     )
-    
+    user=models.OneToOneField(User,on_delete=models.CASCADE,blank=True,null=True)
     id=models.AutoField(primary_key=True)
     title=models.CharField(max_length=100)
     slug=models.SlugField(max_length=100,default=title)

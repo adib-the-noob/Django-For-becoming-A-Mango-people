@@ -39,7 +39,7 @@ class Post(models.Model):
         ('Hindi', 'Hindi'),
         ('Urdu', 'Urdu'),
     )
-    user=models.OneToOneField(User,on_delete=models.CASCADE,blank=True,null=True)
+    user=models.ForeignKey(User,on_delete=models.CASCADE,related_name='post_set',blank=True,null=True)
     id=models.AutoField(primary_key=True)
     title=models.CharField(max_length=100)
     slug=models.SlugField(max_length=100,default=title)

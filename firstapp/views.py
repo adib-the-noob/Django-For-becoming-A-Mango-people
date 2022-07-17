@@ -1,8 +1,22 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 from firstapp.models import Post
 # Create your views here.
-
+from django.views import View
 from .forms import ContactForm,PostForm
+
+class ContactView(View):
+    form_class = ContactForm
+    template_name = 'contact.html'
+
+    def get(self, request, *args, **kwargs):
+        form = self.form_class()
+        return render(request, self.template_name, {'form': form})
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            return HttpResponse("Success")
+        return render(request, self.template_name, {'form': form})        
 
 def contact(request):
     if request.method == "POST":
